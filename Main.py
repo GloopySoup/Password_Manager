@@ -1,1 +1,1 @@
-print("Hi")
+import mysql.connector
