@@ -19,10 +19,9 @@ def add_password(username, password):
         print("Account with that username already exists")
     else:
         encrypted_password = fernet.encrypt(password.encode())
-        print(encrypted_password)
         mycursor.execute("INSERT INTO password (username, password) VALUES(%s,%s)",(username, encrypted_password))
         db.commit()
-
+        print("Account successfully added")
 
 def get_password(username):
     if check(username):
@@ -34,10 +33,25 @@ def get_password(username):
     else:
         print("Account doesn't exist")
 
-if input("Would you like to add a new account or get a new password(Add/Get): ").upper() == "ADD":
+def delete_account(username, password):
+    if check(username):
+        mycursor.execute("SELECT Password FROM pythonpasswordmanager.password WHERE username =%s",(username,))
+        encrpass = mycursor.fetchone()[0]
+        encrpass = str(fernet.decrypt(encrpass))
+        encrpass = encrpass.strip("b'")
+        if password == encrpass:
+            mycursor.execute("DELETE FROM pythonpasswordmanager.password WHERE username =%s",(username,))
+            db.commit()
+            print("Account successfully deleted")
+
+choice = input("Would you like to add  or delete an account or get a new password(Add/Get/Delete): ").upper()
+
+if choice == "ADD":
     print("---ADDING ACCOUNT---")
     add_password(input("Enter a username: "), input("Enter a password: "))
-else:
+elif choice == "GET":
     print("---GETTING PASSWORD---")
     get_password(input("Enter your username: "))
+else:
+    delete_account(input("Enter the username of the account to be deleted: "), input("Enter your password for this account: "))
 
