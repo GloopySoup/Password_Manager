@@ -14,7 +14,7 @@ users_table = Table(
 
 
 async def async_main():
-    engine = create_async_engine("mysql+aiomysql://root:Red47red.@localhost:3306/pythonpasswordmanager")
+    engine = create_async_engine("mysql+aiomysql://user:password.@Host:Port/databaseName")
 
     async with engine.begin() as conn:
         await conn.run_sync(meta.create_all)
