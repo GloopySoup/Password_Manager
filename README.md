@@ -7,3 +7,5 @@ When username is provided, the encrypted password is fetched and decrypted to th
 Enter db user and password
 
 Option to use SQLAlchemy or MySQLConnector
+
+Don't need to run the SQL file if using SQLalchemy method
