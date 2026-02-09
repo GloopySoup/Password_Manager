@@ -1,2 +1,9 @@
-cryptography
-mysql.connector
+#MySQL Connector
+import mysql.connector
+from cryptography.fernet import Fernet
+
+# SQL Alchemy
+from sqlalchemy import Table,Column,MetaData,Text
+from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy import select
+import asyncio
