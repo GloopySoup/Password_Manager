@@ -1,9 +1,9 @@
 import mysql.connector
 from cryptography.fernet import Fernet
 db = mysql.connector.connect(
-host = "localhost",
-user="root",
-password="Red47red.",
+host = "hostname",
+user="username",
+password="password",
 database = "pythonpasswordmanager")
 mycursor = db.cursor()
 key = b'P4IycxnVMm9JU_TMfC7ic20xIL1leeHQ3jq3nIgIceU='
